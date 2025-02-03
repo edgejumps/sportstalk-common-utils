@@ -20,6 +20,7 @@ type Config struct {
 	Timeout int `toml:"redis_timeout" json:"redis_timeout"`
 
 	// TLS related parameters
+	TLSEnabled      bool   `toml:"redis_tls_enabled" json:"redis_tls_enabled"`
 	TlsX509CertFile string `toml:"redis_tls_x509_cert_file" json:"redis_tls_x509_cert_file"`
 	TlsX509KeyFile  string `toml:"redis_tls_x509_key_file" json:"redis_tls_x509_key_file"`
 	TlsCACertFile   string `toml:"redis_tls_ca_cert_file" json:"redis_tls_ca_cert_file"`

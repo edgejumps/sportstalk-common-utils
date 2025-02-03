@@ -93,6 +93,12 @@ func RedisClientFactory(ctx context.Context, config interface{}) (*redis.Client,
 			opt.Username = m["Username"]
 		}
 
+		if ok, m := getFields(v, "TLSEnabled"); ok {
+			if m["TLSEnabled"] == "true" || m["TLSEnabled"] == "TRUE" {
+				opt.TLSConfig = &tls.Config{} // Enables TLS
+			}
+		}
+
 		if ok, m := getFields(v, "TlsX509CertFile", "TlsX509KeyFile", "TlsCACertFile"); ok {
 			cert, err := tls.LoadX509KeyPair(m["TlsX509CertFile"], m["TlsX509KeyFile"])
 			if err != nil {
