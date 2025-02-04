@@ -95,7 +95,9 @@ func RedisClientFactory(ctx context.Context, config interface{}) (*redis.Client,
 
 		if ok, m := getFields(v, "TLSEnabled"); ok {
 			if m["TLSEnabled"] == "true" || m["TLSEnabled"] == "TRUE" {
-				opt.TLSConfig = &tls.Config{} // Enables TLS
+				opt.TLSConfig = &tls.Config{
+					InsecureSkipVerify: true,
+				} // Enables TLS with insecure skip verify
 			}
 		}
 
